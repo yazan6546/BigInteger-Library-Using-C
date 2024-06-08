@@ -20,7 +20,6 @@ struct node* multiplyNumbers (struct node *l1, struct node *l2);
 int compare (struct node *l1, struct node *l2);
 void borrow (struct node *l1, struct node *digit1);
 void filterList (struct node *l1);
-struct node * createOne();
 struct node * createZero();
 void printNumber(struct node *L);
 int divisionSubtract (struct node *l1, struct node *l2);
