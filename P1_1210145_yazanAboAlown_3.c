@@ -200,6 +200,7 @@ struct node** readFile1 (int *size) {
 
     int n;
 
+    *size = 0;
     FILE *p = fopen("input.txt", "r");
     FILE *q = fopen("input.txt", "r");
 
@@ -209,7 +210,7 @@ struct node** readFile1 (int *size) {
     }
 
     /*
-     * This while loop counts the numbers in the file just so as to specify
+     * This while loop counts the numbers in the file just to specify
      * the size of the array to be returned. It uses getc to read the characters
      * one by one, and counts the numbers by seeing how many new line characters are
      * in the file.
@@ -243,7 +244,7 @@ struct node** readFile1 (int *size) {
 
         /*
          * skips any non digit character in the file, and exits loop
-         * only when the negative sign is encountered
+         * only when a negative sign or a digit are encountered
          */
 
         while (!isdigit(n = getc(q))) {
