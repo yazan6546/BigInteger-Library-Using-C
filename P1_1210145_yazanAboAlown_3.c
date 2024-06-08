@@ -59,7 +59,7 @@ int main() {
 
     printf("\n");
 
-    for (;input != 5;) {
+    while (input != 5) {
 
         showMenu();
         scanf("%d", &input);
