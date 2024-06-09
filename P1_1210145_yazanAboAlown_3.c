@@ -71,21 +71,22 @@ int main() {
         switch (input) {
 
             case 1:
-                result = addNumbers(array[first-1], array[second-1]);
+                result = addNumbers(array[first - 1], array[second - 1]);
                 break;
 
-            case 2:
-                result = subtractNumbers(array[first-1], array[second-1]);
+            case 2: {
+                result = subtractNumbers(array[first - 1], array[second - 1]);
                 break;
+            }
 
-            case 3:
-                result = multiplyNumbers(array[first-1], array[second-1]);
+            case 3: {
+                printNumber(array[first - 1]);
                 break;
-
-            case 4:
-
-                divisionAndRemainder = divideAndRemainder(array[first-1], array[second-1]);
+            }
+            case 4: {
+                divisionAndRemainder = divideAndRemainder(array[first - 1], array[second - 1]);
                 break;
+            }
 
             case 5:
                 printf("Program terminated.\n");
@@ -145,7 +146,6 @@ int main() {
             fprintf(output, "\n");
 
             deleteList(divisionAndRemainder[0]);
-            deleteList(divisionAndRemainder[1]);
             free(divisionAndRemainder);
 
         }
@@ -625,6 +625,7 @@ struct node **divideAndRemainder (struct node *l1, struct node *l2) {
 
     struct node *division = NULL;
     division = makeEmpty(division);
+    division->data = 1;
 
     struct node *remainder;
 
