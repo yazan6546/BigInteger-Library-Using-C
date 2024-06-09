@@ -441,33 +441,42 @@ void borrow (struct node *l1, struct node *digit1) {
 
 int compare (struct node *l1, struct node *l2) {
 
-    int s1, s2;
+    struct node *p1 = l1;
+    struct node *p2 = l2;
 
-    s1 = getSize(l1);
-    s2 = getSize(l2);
-
-
-    if (s1 > s2) {
-        return 1;
+    if (l1->data != l2->data) {
+        return l1 > l2 ? 1 : -1;
     }
-    else if (s1 < s2) {
+    else if (p1->data == -1) { //both are negative, swap them
+
+        struct node *temp = p1;
+        p1 = p2;
+        p2 = temp;
+
+    }
+    p1 = p1->next;
+    p2 = p2->next;
+    while (!p1->isHead && !p2->isHead) {
+        if (p1->data > p2->data) {
+            return 1;
+        }
+        else if (p1->data < p2->data) {
+            return -1;
+        }
+
+        p1 = p1->next;
+        p2 = p2->next;
+    }
+
+    if (p1->isHead) {
         return -1;
     }
 
-    if (l1->next->isHead || l2->next->isHead) {
-        return 0;
-    }
-
-    else if ((l1->next->data > l2->next->data)) {
+    if (p2->isHead) {
         return 1;
     }
-    else if ((l1->next->data < l2->next->data)) {
 
-        return -1;
-    }
-    else {
-        return compare(l1->next, l2->next);
-    }
+    return 0;
 }
 
 /*
