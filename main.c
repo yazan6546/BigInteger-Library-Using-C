@@ -444,11 +444,8 @@ int compare (struct node *l1, struct node *l2) {
     struct node *p1 = l1;
     struct node *p2 = l2;
 
-    if ((p1->data == -1) && (p2->data == 1)) {
-        return -1;
-    }
-    else if ((p1->data == 1) && (p2->data == -1)) {
-        return 1;
+    if (l1->data != l2->data) {
+        return l1 > l2 ? 1 : -1;
     }
     else if (p1->data == -1) { //both are negative, swap them
 
