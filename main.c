@@ -444,16 +444,16 @@ int compare (struct node *l1, struct node *l2) {
     struct node *p1 = l1;
     struct node *p2 = l2;
 
-    if (l1->data != l2->data) {
-        return l1 > l2 ? 1 : -1;
-    }
-    else if (p1->data == -1) { //both are negative, swap them
-
-        struct node *temp = p1;
-        p1 = p2;
-        p2 = temp;
-
-    }
+//    if (l1->data != l2->data) {
+//        return l1 > l2 ? 1 : -1;
+//    }
+//    else if (p1->data == -1) { //both are negative, swap them
+//
+//        struct node *temp = p1;
+//        p1 = p2;
+//        p2 = temp;
+//
+//    }
     p1 = p1->next;
     p2 = p2->next;
     while (!p1->isHead && !p2->isHead) {
@@ -468,15 +468,15 @@ int compare (struct node *l1, struct node *l2) {
         p2 = p2->next;
     }
 
-    if (p1->isHead) {
-        return -1;
+    if (p1->isHead && p2->isHead) {
+        return 0;
     }
 
     if (p2->isHead) {
         return 1;
     }
 
-    return 0;
+    return -1;
 }
 
 /*
