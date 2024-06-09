@@ -7,3 +7,5 @@ add_executable(Proj main.c
         LinkedList/LinkedList.h
         LinkedList/LinkedList.c)
 
+add_executable(haha bigint.c
+        bro.c LinkedList/LinkedList.c)
