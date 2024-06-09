@@ -136,15 +136,15 @@ void addFirst (struct node* L, int data) {
  * Function that traverses and prints the contents of the list
  */
 
-void printList(struct node* L) {
+void printList(struct node* L, FILE *q) {
 
     if (isEmpty(L)) {
-        printf("The list is empty!\n");
+        fprintf(stdout, "The list is empty!\n");
         return;
     }
 
     for (struct node* p = L->next; p!=L;p = p->next) {
-        printf("%d", p->data);
+        fprintf(q, "%d", p->data);
     }
 }
 

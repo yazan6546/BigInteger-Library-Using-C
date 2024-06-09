@@ -8,7 +8,6 @@
 #include "LinkedList/LinkedList.h"
 
 void showMenu ();
-void printNumber_file (struct node *L, FILE *q);
 struct node** readFile1 (int *size);
 struct node* addNumbers (struct node *l1, struct node *l2);
 struct node* subtractNumbers (struct node *l1 , struct node *l2);
@@ -21,8 +20,9 @@ int compare (struct node *l1, struct node *l2);
 void borrow (struct node *l1, struct node *digit1);
 void filterList (struct node *l1);
 struct node * createZero();
-void printNumber(struct node *L);
+void printNumber(struct node *L, FILE *q);
 int divisionSubtract (struct node *l1, struct node *l2);
+void delete_array_linkedLists(struct node **array, int length);
 
 int main() {
 
@@ -52,7 +52,7 @@ int main() {
         }
 
         printf("%d) ", i+1);
-        printNumber(array[i]);
+        printNumber(array[i], stdout);
         printf("   ");
     }
 
@@ -74,17 +74,17 @@ int main() {
                 result = addNumbers(array[first - 1], array[second - 1]);
                 break;
 
-            case 2: {
+            case 2:
                 result = subtractNumbers(array[first - 1], array[second - 1]);
                 break;
-            }
 
-            case 3: {
-                printNumber(array[first - 1]);
+            case 3:
+                result = multiplyNumbers(array[first - 1], array[second - 1]);
                 break;
-            }
+
             case 4: {
                 divisionAndRemainder = divideAndRemainder(array[first - 1], array[second - 1]);
+                result = divisionAndRemainder[0];
                 break;
             }
 
@@ -96,80 +96,49 @@ int main() {
                 printf("Enter a valid operation!");
         }
 
-        if (input >= 1 && input <= 3) {
+        if (input >= 1 && input <= 4) {
 
-            printNumber(array[first - 1]);
+            printNumber(array[first - 1], stdout);
             printf(" %c ", op[input - 1]);
-            printNumber(array[second - 1]);
+            printNumber(array[second - 1], stdout);
             printf(" = ");
-            printNumber(result);
+            printNumber(result, stdout);
             printf("\n");
 
-            printNumber_file(array[first - 1], output);
+            printNumber(array[first - 1], output);
             fprintf(output, " %c ", op[input - 1]);
-            printNumber_file(array[second - 1], output);
+            printNumber(array[second - 1], output);
             fprintf(output, " = ");
-            printNumber_file(result, output);
+            printNumber(result, output);
             fprintf(output, "\n");
 
             deleteList(result);
         }
-        //handles the division case
-        else if (input == 4) {
+        //handles the mod in division
+        if (input == 4) {
 
-            printNumber(array[first - 1]);
-            printf(" %c ", op[input - 1]);
-            printNumber(array[second - 1]);
+            printNumber(array[first - 1], stdout);
+            printf(" mod ");
+            printNumber(array[second - 1], stdout);
             printf(" = ");
-            printNumber(divisionAndRemainder[0]);
+            printNumber(divisionAndRemainder[1], stdout);
             printf("\n");
 
-            printNumber_file(array[first - 1], output);
-            fprintf(output, " %c ", op[input - 1]);
-            printNumber_file(array[second - 1], output);
-            fprintf(output, " = ");
-            printNumber_file(divisionAndRemainder[0], output);
-            fprintf(output, "\n");
-
-            printNumber(array[first - 1]);
-            printf(" mod ", op[input - 1]);
-            printNumber(array[second - 1]);
-            printf(" = ");
-            printNumber(divisionAndRemainder[1]);
-            printf("\n");
-
-            printNumber_file(array[first - 1], output);
+            printNumber(array[first - 1], output);
             fprintf(output, " mod ");
-            printNumber_file(array[second - 1], output);
+            printNumber(array[second - 1], output);
             fprintf(output, " = ");
-            printNumber_file(divisionAndRemainder[1], output);
+            printNumber(divisionAndRemainder[1], output);
             fprintf(output, "\n");
 
-            deleteList(divisionAndRemainder[0]);
             free(divisionAndRemainder);
 
         }
 
 
     }
+    delete_array_linkedLists(array, size);
     fclose(output);
-}
-
-/*
- * Function to print the number represented by the linked list in a file
- * supplied by the parameter. Takes a head as the first input and the file
- * pointer for the second input.
- */
-
-void printNumber_file (struct node *L, FILE *q) {
-
-    if (L->data == -1) {      //checks for the negative in the head and prints it
-
-        fprintf(q, "-");
-    }
-    for (struct node *p = L->next; p != L; p = p->next) { //prints each digit in the linked list
-        fprintf(q, "%d", p->data);
-    }
 }
 
 /*
@@ -390,7 +359,7 @@ struct node* subtractNumbers (struct node *l1 , struct node *l2) {
         return createZero();
     }
 
-    if (n < 0) { //swaps both lists if the first is less than the second and inverts the sign after. I.E 5-6 = -(6-5).
+    else if (n < 0) { //swaps both lists if the first is less than the second and inverts the sign after. I.E 5-6 = -(6-5).
         struct node *temp = l1;
         l1 = l2;
         l2 = temp;
@@ -782,10 +751,19 @@ struct node * createZero() {
  * and 1 if positive.
  */
 
-void printNumber(struct node *L) {
+void printNumber(struct node *L, FILE *q) {
 
     if (L->data == -1) {
-        printf("-");
+        fprintf(q, "-");
     }
-    printList(L); //prints the contents of the list
+    printList(L, q); //prints the contents of the list
+}
+
+void delete_array_linkedLists(struct node **array, int length) {
+
+    for (int i = 0; i<length; i++) {
+        deleteList(array[i]);
+    }
+
+    free(array);
 }
