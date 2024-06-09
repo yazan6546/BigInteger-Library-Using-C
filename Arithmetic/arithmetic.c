@@ -36,8 +36,17 @@ int compare (struct node *l1, struct node *l2) {
 //        p2 = temp;
 //
 //    }
-    p1 = p1->next;
-    p2 = p2->next;
+
+    int len1 = getSize(p1);
+    int len2 = getSize(p2);
+
+    if (len1 > len2)
+        return 1;
+    else if (len2 > len1)
+        return -1;
+
+    p1 = p1->previous;
+    p2 = p2->previous;
     while (!p1->isHead && !p2->isHead) {
         if (p1->data > p2->data) {
             return 1;
@@ -46,8 +55,8 @@ int compare (struct node *l1, struct node *l2) {
             return -1;
         }
 
-        p1 = p1->next;
-        p2 = p2->next;
+        p1 = p1->previous;
+        p2 = p2->previous;
     }
 
     if (p1->isHead && p2->isHead) {

@@ -13,10 +13,8 @@
 
 struct node* addNumbers (struct node *l1, struct node *l2) {
 
-
     struct node *sumList = NULL;
     sumList = makeEmpty(sumList);
-
 
     /*
      * redirects to subtraction if 2 signs are different
