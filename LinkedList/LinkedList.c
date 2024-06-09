@@ -146,6 +146,7 @@ void printList(struct node* L, FILE *q) {
     for (struct node* p = L->next; p!=L;p = p->next) {
         fprintf(q, "%d", p->data);
     }
+    fprintf(q, "\n");
 }
 
 /*
@@ -225,4 +226,18 @@ void emptyList (struct node *L) {
     while (!isEmpty(L)) {
         removeLast(L);
     }
+}
+
+
+/*
+ * Linked list prototype that returns a list representing a zero.
+ */
+struct node * createZero() {
+
+    struct node *L = NULL;
+    L = makeEmpty(L);
+    L->data = 1;
+    addFirst(L,0);
+
+    return L;
 }
