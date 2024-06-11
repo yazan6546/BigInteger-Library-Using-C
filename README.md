@@ -49,7 +49,7 @@ This directory contains the modules for linked list operations:
 
 1. Clone the repository:
 ```sh
-git clone https://github.com/your_username/bigint_library.git
+git clone https://github.com/yazan6546/BigInteger-Library-Using-C.git
 ```
 2. Navigate to the repository directory:
 
