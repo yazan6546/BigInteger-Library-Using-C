@@ -95,6 +95,90 @@ int main() {
 }
 ```
 
+## Function Descriptions
+
+### BigInt Utility Functions
+
+- **`BigInt* bigint_create(char *string);`**
+  - **Description:** Creates a `BigInt` from a string representation.
+  - **Parameters:** 
+    - `str` - The string representation of the big integer.
+  - **Returns:** A pointer to the newly created `BigInt`, or `NULL` on failure.
+
+- **`void bigint_free(BigInt* a);`**
+  - **Description:** Frees the memory allocated for a `BigInt`.
+  - **Parameters:** 
+    - `a` - The `BigInt` to free.
+
+- **`void bigint_copy(const BigInt* number1, const BigInt* number2);`**
+  - **Description:** Creates a copy of a `BigInt`.
+  - **Parameters:** 
+    - `number1` - The `BigInt` to copy from.
+    - `number2` - The `BigInt` to copy to.
+
+- **`void bigint_print(const BigInt *number, FILE *q);`**
+  - **Description:** Prints a `BigInt` to standard output.
+  - **Parameters:** 
+    - `number` - The `BigInt` to print.
+    - `q` - The file stream to print to.
+
+- **`int bigint_compare(const BigInt* a, const BigInt* b);`**
+  - **Description:** Compares two `BigInts`.
+  - **Parameters:** 
+    - `a` - The first `BigInt`.
+    - `b` - The second `BigInt`.
+  - **Returns:** `-1` if `a < b`, `0` if `a == b`, and `1` if `a > b`.
+
+- **`char* bigint_to_string(const BigInt* a);`**
+  - **Description:** Converts a `BigInt` to a string representation.
+  - **Parameters:** 
+    - `a` - The `BigInt` to convert.
+  - **Returns:** A newly allocated string representing the `BigInt`, or `NULL` on failure.
+
+### BigInt Arithmetic Functions
+
+- **`BigInt* bigint_add(const BigInt* a, const BigInt* b);`**
+  - **Description:** Adds two `BigInts`.
+  - **Parameters:** 
+    - `a` - The first `BigInt`.
+    - `b` - The second `BigInt`.
+  - **Returns:** A pointer to the resulting `BigInt` after addition.
+
+- **`BigInt* bigint_subtract(const BigInt* a, const BigInt* b);`**
+  - **Description:** Subtracts the second `BigInt` from the first `BigInt`.
+  - **Parameters:** 
+    - `a` - The first `BigInt`.
+    - `b` - The second `BigInt`.
+  - **Returns:** A pointer to the resulting `BigInt` after subtraction.
+
+- **`BigInt* bigint_multiply(const BigInt* a, const BigInt* b);`**
+  - **Description:** Multiplies two `BigInts`.
+  - **Parameters:** 
+    - `a` - The first `BigInt`.
+    - `b` - The second `BigInt`.
+  - **Returns:** A pointer to the resulting `BigInt` after multiplication.
+
+- **`BigInt* bigint_divide(const BigInt* a, const BigInt* b);`**
+  - **Description:** Divides the first `BigInt` by the second `BigInt`.
+  - **Parameters:** 
+    - `a` - The first `BigInt`.
+    - `b` - The second `BigInt`.
+  - **Returns:** A pointer to the resulting `BigInt` after division.
+
+- **`BigInt** bigint_divide_and_remainder(const BigInt* a, const BigInt* b);`**
+  - **Description:** Divides the first `BigInt` by the second `BigInt` and provides both quotient and remainder.
+  - **Parameters:** 
+    - `a` - The first `BigInt`.
+    - `b` - The second `BigInt`.
+  - **Returns:** A pointer to an array containing the quotient and remainder `BigInts`.
+
+- **`BigInt* bigint_remainder(const BigInt *a, const BigInt *b);`**
+  - **Description:** Computes the remainder of the division of the first `BigInt` by the second `BigInt`.
+  - **Parameters:** 
+    - `a` - The first `BigInt`.
+    - `b` - The second `BigInt`.
+  - **Returns:** A pointer to the resulting `BigInt` after computing the remainder.
+
 ## Testing
 Run the provided test program to verify the functionality of the library:
 ```sh
