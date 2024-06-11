@@ -70,8 +70,8 @@ Include the bigint.h and relevant modules in your project to use the BigInt libr
 #include "bigint.h"
 
 int main() {
-    BigInt* a = bigint_from_string("12345678901234567890");
-    BigInt* b = bigint_from_string("98765432109876543210");
+    BigInt* a = bigint_create("12345678901234567890");
+    BigInt* b = bigint_create("98765432109876543210");
     
     BigInt* sum = bigint_add(a, b);
     BigInt* diff = bigint_subtract(a, b);
