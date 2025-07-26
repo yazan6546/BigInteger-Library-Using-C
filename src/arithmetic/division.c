@@ -1,5 +1,5 @@
 #include "arithmetic.h"
-
+#include <stdlib.h>
 
 /*
  * Function that takes 2 lists of numbers as input and returns

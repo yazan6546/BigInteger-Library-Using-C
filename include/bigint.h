@@ -2,8 +2,6 @@
 #define PROJ_BIGINT_H
 
 #include "arithmetic/arithmetic.h"
-#include <ctype.h>
-#include <stdbool.h>
 
 typedef struct {
     struct node* head;

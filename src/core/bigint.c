@@ -1,5 +1,7 @@
 #include "bigint.h"
 #include <stdlib.h>
+#include <ctype.h>
+#include <stdbool.h>
 
 void bigint_print (const BigInt *number, FILE *q) {
 
