@@ -1,7 +1,7 @@
 #ifndef PROJ_BIGINT_H
 #define PROJ_BIGINT_H
 
-#include "Arithmetic/arithmetic.h"
+#include "arithmetic/arithmetic.h"
 #include <ctype.h>
 #include <stdbool.h>
 
