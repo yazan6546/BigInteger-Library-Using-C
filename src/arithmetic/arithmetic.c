@@ -26,37 +26,26 @@ int compare (struct node *l1, struct node *l2) {
     struct node *p1 = l1;
     struct node *p2 = l2;
 
-//    if (l1->data != l2->data) {
-//        return l1 > l2 ? 1 : -1;
-//    }
-//    else if (p1->data == -1) { //both are negative, swap them
-//
-//        struct node *temp = p1;
-//        p1 = p2;
-//        p2 = temp;
-//
-//    }
-
     int len1 = getSize(p1);
     int len2 = getSize(p2);
 
     if (len1 > len2)
         return 1;
-    if (len2 > len1)
+    if (len1 < len2)
         return -1;
 
-    p1 = p1->previous;
-    p2 = p2->previous;
+    p1 = p1->next;
+    p2 = p2->next;
     while (!p1->isHead && !p2->isHead) {
         if (p1->data > p2->data) {
             return 1;
         }
-        else if (p1->data < p2->data) {
+        if (p1->data < p2->data) {
             return -1;
         }
 
-        p1 = p1->previous;
-        p2 = p2->previous;
+        p1 = p1->next;
+        p2 = p2->next;
     }
 
     if (p1->isHead && p2->isHead) {
