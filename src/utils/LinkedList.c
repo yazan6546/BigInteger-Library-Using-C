@@ -205,9 +205,10 @@ int removeLast(struct node* L) {
  * the copied list
  */
 
-struct node* copyList (struct node *l1, struct node *l2) {
+struct node* copyList (struct node *l2) {
 
-    emptyList(l1);
+    struct node *l1 = NULL;
+    l1 = makeEmpty(l1); //creates an empty list
 
     l1->data = l2->data;
 

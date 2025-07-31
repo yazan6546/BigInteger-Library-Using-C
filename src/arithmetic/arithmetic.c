@@ -42,7 +42,7 @@ int compare (struct node *l1, struct node *l2) {
 
     if (len1 > len2)
         return 1;
-    else if (len2 > len1)
+    if (len2 > len1)
         return -1;
 
     p1 = p1->previous;

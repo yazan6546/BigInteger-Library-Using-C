@@ -22,7 +22,7 @@ void addFirst (struct node* L, int data);
 void printList(struct node* L, FILE *q);
 int removeFirst(struct node* L);
 int removeLast(struct node* L);
-struct node* copyList (struct node *l1, struct node *l2);
+struct node* copyList (struct node *l2);
 void emptyList (struct node *L);
 struct node * createZero();
 #endif //PROJ_LINKEDLIST_H

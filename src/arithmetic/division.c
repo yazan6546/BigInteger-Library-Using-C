@@ -33,13 +33,13 @@ struct node **divideAndRemainder (struct node *l1, struct node *l2) {
         //and a remainder same as the dividend.
 
         addFirst(division, 0);
-        remainder = l1;
+        remainder = copyList(l1);
         array[0] = division;
         array[1] = remainder;
 
         return array;
     }
-    else if (comp == 0) { //returns a list representing 0 if the dividend is less than divisor
+    if (comp == 0) { //returns a list representing 0 if the dividend is less than divisor
         //and a remainder of zero.
 
         addFirst(division, 1);
@@ -55,6 +55,7 @@ struct node **divideAndRemainder (struct node *l1, struct node *l2) {
     }
 
     int size = getSize(l2); //gets the size of l2
+
     int temp;
 
     struct node *mult;

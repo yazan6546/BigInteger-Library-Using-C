@@ -218,6 +218,8 @@ TEST_F(BigIntArithmeticTest, DividePositiveNumbers) {
     BigInt* a = bigint_create("456");
     BigInt* b = bigint_create("123");
     BigInt* result = bigint_divide(a, b);
+    bigint_print(result, stdout);
+
 
     char* result_str = bigint_to_string(result);
     EXPECT_STREQ(result_str, "3");
@@ -232,6 +234,8 @@ TEST_F(BigIntArithmeticTest, DivideByOne) {
     BigInt* a = bigint_create("123");
     BigInt* one = bigint_create("1");
     BigInt* result = bigint_divide(a, one);
+
+    bigint_print(result, stdout);
 
     char* result_str = bigint_to_string(result);
     EXPECT_STREQ(result_str, "123");

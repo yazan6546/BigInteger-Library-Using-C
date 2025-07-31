@@ -14,7 +14,7 @@ typedef struct {
  * @param str The string representation of the big integer.
  * @return A pointer to the newly created BigInt, or NULL on failure.
  */
-BigInt* bigint_create(char *string);
+BigInt* bigint_create(const char *string);
 
 /**
  * @brief Frees the memory allocated for a BigInt.
@@ -27,7 +27,7 @@ void bigint_free(BigInt* a);
  * @param a The BigInt to copy.
  * @return A pointer to the newly created copy of the BigInt, or NULL on failure.
  */
-void bigint_copy(const BigInt* number1, const BigInt* number2);
+BigInt* bigint_copy(const BigInt* number1);
 
 /**
  * @brief Prints a BigInt to standard output.

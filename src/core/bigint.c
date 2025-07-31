@@ -41,7 +41,7 @@ char* bigint_to_string(const BigInt* a) {
     return result;
 }
 
-BigInt* bigint_create(char *string) {
+BigInt* bigint_create(const char *string) {
 
     BigInt *number = malloc(sizeof(BigInt));
 
@@ -54,7 +54,7 @@ BigInt* bigint_create(char *string) {
     bool first = true;
 
 
-    for (char *p = string ; *p != '\0' ; p++) { // Iterate over the string
+    for (const char *p = string ; *p != '\0' ; p++) { // Iterate over the string
         if (!isdigit(*p) && (*p) != '-' ) {
             return NULL; // Invalid number
         }
@@ -89,8 +89,14 @@ int bigint_compare(const BigInt* a, const BigInt* b) {
     return result;
 }
 
-void bigint_copy(const BigInt* number1, const BigInt* number2) {
-    copyList(number1->head, number2->head);
+BigInt* bigint_copy(const BigInt* number1) {
+    struct node* number2 = copyList(number1->head);
+    BigInt *copy = malloc(sizeof(BigInt));
+    if (copy == NULL) {
+        return NULL; // Memory allocation failed
+    }
+    copy->head = number2;
+    return copy;
 }
 
 void bigint_free(BigInt* a) {

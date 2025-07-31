@@ -38,13 +38,11 @@ struct node* subtractNumbers (struct node *l1 , struct node *l2) {
 
 
     struct node *temp1 = NULL;  //creating a temp list just not to modify the value of l1
-    temp1 = makeEmpty(temp1);
-    copyList(temp1, l1); //copying l1 into temp1
+    temp1 = copyList(l1); //copying l1 into temp1
     struct node *digit1 = temp1->previous;
 
     struct node *temp2 = NULL;  //creating a temp list just not to modify the value of l2
-    temp2 = makeEmpty(temp2);
-    copyList(temp2, l2); //copying l2 into temp2
+    temp2 = copyList(l2); //copying l2 into temp2
 
     struct node *digit2 = temp2->previous; //make temp2 point to the last digit in list 2.
 
