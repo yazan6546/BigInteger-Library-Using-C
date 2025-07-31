@@ -25,7 +25,7 @@ struct node* makeEmpty(struct node* L) { //makeEmpty
     }
 
     L->data = 1;
-    L -> next = NULL;
+    L -> next = L;
     L->previous = L;
     L->isHead = 1;
     return L;
@@ -64,6 +64,11 @@ int isEmpty(struct node* L) {
 int getSize(struct node* L) {
 
     int size = 0;
+
+    if (isEmpty(L)) { //checks if the list is empty
+        return 0;
+    }
+
     for (struct node* p = L->next; p!=L; p = p->next) {
         size++;
     }

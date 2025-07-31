@@ -21,9 +21,12 @@ protected:
 // Test list creation and initialization
 TEST_F(LinkedListTest, CreateEmptyList) {
     list = makeEmpty(list);
+    std::cout << getSize(list) << std::endl;
+
     ASSERT_NE(list, nullptr);
     EXPECT_TRUE(isEmpty(list));
     EXPECT_EQ(getSize(list), 0);
+
 }
 
 TEST_F(LinkedListTest, CreateZeroList) {
