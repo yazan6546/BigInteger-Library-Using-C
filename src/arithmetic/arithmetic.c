@@ -31,9 +31,18 @@ int compare (struct node *l1, struct node *l2) {
         return 0; // Invalid BigInt
     }
 
-    if (l1->data != l2->data && l1->next->data != 0 && l2->next->data != 0) {
+    if (l1->next->data == 0 && l2->next->data != 0) {
+        return -1 * l2->data; // l1 is zero, so l2 is greater or equal
+    }
+    if (l2->next->data != 0 && l1->next->data == 0) {
+        return l1->data; // l2 is zero, so l1 is greater or equal
+    }
+
+    if (l1->data != l2->data) {
         return l1->data > l2->data ? 1 : -1; // Compare signs
     }
+
+    // Both numbers have the same sign, so we compare their sizes
 
     int len1 = getSize(p1);
     int len2 = getSize(p2);
@@ -49,11 +58,13 @@ int compare (struct node *l1, struct node *l2) {
     p1 = p1->next;
     p2 = p2->next;
     while (!p1->isHead && !p2->isHead) {
+
+
         if (p1->data > p2->data) {
             return 1 * l1->data; // Reverse the result to accomodate sign
         }
-        if (p1->data < p2->data) {
-            return -1 * l1->data;
+        else if (p1->data < p2->data) {
+            return -1 * l1->data; // Reverse the result to accomodate sign
         }
 
         p1 = p1->next;
