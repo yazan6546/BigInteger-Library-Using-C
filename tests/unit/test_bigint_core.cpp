@@ -167,7 +167,7 @@ TEST_F(BigIntCoreTest, CopyBigInt) {
     BigInt* original = bigint_create("123456789");
     BigInt* copy = bigint_create("0");
 
-    bigint_copy(original, copy);
+    copy = bigint_copy(original);
 
     char* orig_str = bigint_to_string(original);
     char* copy_str = bigint_to_string(copy);

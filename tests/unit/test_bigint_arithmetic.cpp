@@ -216,7 +216,7 @@ TEST_F(BigIntArithmeticTest, MultiplyMixedSigns) {
 // Division Tests
 TEST_F(BigIntArithmeticTest, DividePositiveNumbers) {
     BigInt* a = bigint_create("456");
-    BigInt* b = bigint_create("328");
+    BigInt* b = bigint_create("123");
     BigInt* result = bigint_divide(a, b);
     bigint_print(result, stdout);
 

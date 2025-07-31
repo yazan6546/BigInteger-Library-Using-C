@@ -36,7 +36,8 @@ struct node **divideAndRemainder (struct node *l1, struct node *l2) {
         remainder = copyList(l1);
         array[0] = division;
         array[1] = remainder;
-
+        l1->data = tempSign1; //restores the original sign of l1
+        l2->data = tempSign2; //restores the original sign of l2
         return array;
     }
     if (comp == 0) { //returns a list representing 0 if the dividend is less than divisor
@@ -49,6 +50,9 @@ struct node **divideAndRemainder (struct node *l1, struct node *l2) {
 
         array[0] = division;
         array[1] = remainder;
+
+        l1->data = tempSign1; //restores the original sign of l1
+        l2->data = tempSign2; //restores the original sign of l2
 
         return array;
 

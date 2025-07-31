@@ -85,6 +85,9 @@ int bigint_compare(const BigInt* a, const BigInt* b) {
         return 0; // Invalid BigInt
     }
 
+    filterList(a->head);
+    filterList(b->head);
+
     int result = compare(a->head, b->head);
     return result;
 }
