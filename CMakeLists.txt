@@ -20,7 +20,7 @@ set(ARITHMETIC_SOURCES
         src/arithmetic/division.c
         src/arithmetic/arithmetic.c
 )
-set(UTILS_SOURCES src/utils/LinkedList.c)
+set(UTILS_SOURCES ${CMAKE_SOURCE_DIR}/src/utils/LinkedList.c)
 
 # Create static library
 add_library(bigint STATIC
@@ -32,7 +32,7 @@ add_library(bigint STATIC
 # Include directories
 target_include_directories(bigint
         PUBLIC include              # Only bigint.h is public
-        PRIVATE src                 # All other headers are private
+        PUBLIC src                 # All other headers are private
 )
 
 # Add tests only if BUILD_TESTING is enabled

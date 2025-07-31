@@ -16,6 +16,31 @@ void bigint_print (const BigInt *number, FILE *q) {
     printList(L, q); //prints the contents of the list
 }
 
+char* bigint_to_string(const BigInt* a) {
+
+    if (a == NULL || a->head == NULL) {
+        return NULL; // Invalid BigInt
+    }
+
+    struct node *L = a->head;
+    char *result = malloc(1024); // Allocate enough space for the string
+    if (result == NULL) {
+        return NULL; // Memory allocation failed
+    }
+
+    char *p = result;
+    if (L->data == -1) {
+        *p++ = '-'; // Add negative sign if needed
+    }
+
+    for (struct node *current = L->next; current != L; current = current->next) {
+        *p++ = current->data + '0'; // Convert digit to character
+    }
+    *p = '\0'; // Null-terminate the string
+
+    return result;
+}
+
 BigInt* bigint_create(char *string) {
 
     BigInt *number = malloc(sizeof(BigInt));
@@ -39,12 +64,10 @@ BigInt* bigint_create(char *string) {
             number->head->data = -1;
             continue;
         }
-
-        else if (*p == '-' && !first) {
+        if (*p == '-' && !first) {
             return NULL;
         }
-
-        else if (isdigit(*p) && first) {
+        if (isdigit(*p) && first) {
             first = false;
             number->head->data = 1;
         }
@@ -53,6 +76,17 @@ BigInt* bigint_create(char *string) {
     }
 
     return number;
+}
+
+
+int bigint_compare(const BigInt* a, const BigInt* b) {
+
+    if (a == NULL || b == NULL || a->head == NULL || b->head == NULL) {
+        return 0; // Invalid BigInt
+    }
+
+    int result = compare(a->head, b->head);
+    return result;
 }
 
 void bigint_copy(const BigInt* number1, const BigInt* number2) {
@@ -72,7 +106,7 @@ BigInt* bigint_add(const BigInt* a, const BigInt* b) {
     return sum_bigint;
 }
 
-BigInt* bigint_sub(const BigInt* a, const BigInt* b) {
+BigInt* bigint_subtract(const BigInt* a, const BigInt* b) {
 
     BigInt *sub_bigint = malloc(sizeof(BigInt));
     sub_bigint->head = subtractNumbers(a->head, b->head);
@@ -111,4 +145,13 @@ BigInt* bigint_remainder(const BigInt *a, const BigInt *b) {
     free(results);
 
     return remainder;
+}
+
+
+BigInt* bigint_multiply(const BigInt* a, const BigInt* b) {
+
+    BigInt *product_bigint = malloc(sizeof(BigInt));
+    product_bigint->head = multiplyNumbers(a->head, b->head);
+
+    return product_bigint;
 }

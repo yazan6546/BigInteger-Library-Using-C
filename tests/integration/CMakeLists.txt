@@ -1,0 +1,3 @@
+create_test(test_bigint_integration)
+
+target_link_libraries(test_bigint_integration PRIVATE bigint)
