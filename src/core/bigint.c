@@ -43,6 +43,10 @@ char* bigint_to_string(const BigInt* a) {
 
 BigInt* bigint_create(const char *string) {
 
+    if (string == NULL || *string == '\0') {
+        return NULL; // Invalid input
+    }
+
     BigInt *number = malloc(sizeof(BigInt));
 
     if (number == NULL) { //malloc fails
