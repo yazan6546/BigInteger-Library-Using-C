@@ -161,9 +161,7 @@ void printList(struct node* L, FILE *q) {
 int removeFirst(struct node* L) {
 
     if (isEmpty(L)) {
-
-        printf("List is empty!");
-        exit(1);
+        return 0; //returns 0 if the list is empty
     }
 
     int data = L->next->data;
@@ -183,9 +181,7 @@ int removeFirst(struct node* L) {
 int removeLast(struct node* L) {
 
     if (isEmpty(L)) {
-
-        printf("List is empty!");
-        exit(1);
+        return 0; //returns 0 if the list is empty
     }
 
     int data = L->previous->data;

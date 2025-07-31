@@ -133,8 +133,8 @@ TEST_F(LinkedListTest, RemoveFromEmptyList) {
 
 // Test list copying
 TEST_F(LinkedListTest, CopyList) {
+    struct node* copy;
     list = makeEmpty(list);
-    struct node* copy_list = makeEmpty(nullptr);
 
     // Add some elements to original list
     addLast(list, 1);
@@ -143,34 +143,34 @@ TEST_F(LinkedListTest, CopyList) {
     addLast(list, 4);
 
     // Copy the list
-    copyList(list, copy_list);
+    copy = copyList(list);
 
     // Verify both lists have same size
-    EXPECT_EQ(getSize(list), getSize(copy_list));
+    EXPECT_EQ(getSize(list), getSize(copy));
 
     // Verify elements are the same by removing and comparing
-    while (!isEmpty(list) && !isEmpty(copy_list)) {
+    while (!isEmpty(list) && !isEmpty(copy)) {
         int orig = removeFirst(list);
-        int copy = removeFirst(copy_list);
-        EXPECT_EQ(orig, copy);
+        int copyVal = removeFirst(copy);
+        EXPECT_EQ(orig, copyVal);
     }
 
     EXPECT_TRUE(isEmpty(list));
-    EXPECT_TRUE(isEmpty(copy_list));
+    EXPECT_TRUE(isEmpty(copy));
 
-    deleteList(copy_list);
+    deleteList(copy);
 }
 
 TEST_F(LinkedListTest, CopyEmptyList) {
     list = makeEmpty(list);
-    struct node* copy_list = makeEmpty(nullptr);
+    struct node* copy;
 
-    copyList(list, copy_list);
+    copy = copyList(list);
 
-    EXPECT_TRUE(isEmpty(copy_list));
-    EXPECT_EQ(getSize(copy_list), 0);
+    EXPECT_TRUE(isEmpty(copy));
+    EXPECT_EQ(getSize(copy), 0);
 
-    deleteList(copy_list);
+    deleteList(copy);
 }
 
 // Test emptying list
@@ -248,11 +248,11 @@ TEST_F(LinkedListTest, DoublyLinkedProperties) {
     struct node* current = list->next; // Skip head node
     int expected_data = 1;
 
-    while (current != nullptr && current->data != 0) { // Assuming 0 or special value marks end
+    while (current != list) { // Assuming 0 or special value marks end
         EXPECT_EQ(current->data, expected_data);
 
         // Test that previous pointer works (if it's truly doubly linked)
-        if (current->previous != nullptr && current->previous != list) {
+        if (current->previous != list) {
             EXPECT_EQ(current->previous->data, expected_data - 1);
         }
 
@@ -271,7 +271,7 @@ TEST_F(LinkedListTest, HeadNodeProperties) {
     addFirst(list, 1);
 
     // First data node should not be marked as head
-    if (list->next != nullptr) {
+    if (list->next != list) {
         EXPECT_FALSE(list->next->isHead);
     }
 }
